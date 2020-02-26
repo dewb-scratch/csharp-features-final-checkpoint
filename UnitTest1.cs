@@ -151,9 +151,7 @@ namespace CsharpFeaturesFinalCheckpoint
         {
             return student switch
             {
-                (true, 'A') => true,
-                (true, 'B') => true,
-                (true, 'C') => true,
+                var (_, _, paid, grade) when paid && (grade == 'A' || grade == 'B' || grade == 'C') => true,
                 _ => false
             };
         }
@@ -177,7 +175,7 @@ namespace CsharpFeaturesFinalCheckpoint
         {
         }
 
-        public void Deconstruct(out bool tuitionPaid, out char grade) =>
-            (tuitionPaid, grade) = (TuitionPaid, Grade);
+        public void Deconstruct(out string firstName, out string lastName, out bool tuitionPaid, out char grade) =>
+            (firstName, lastName, tuitionPaid, grade) = (FirstName, LastName, TuitionPaid, Grade);
     }
 }
